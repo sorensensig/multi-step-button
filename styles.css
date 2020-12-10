@@ -1,0 +1,112 @@
+:root {
+  --primary-bg-color: hsl(202, 51%, 98%);
+  --card-bg-color: hsl(208, 44%, 95%);
+  --secondary-font-color: hsl(209, 29%, 84%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 1rem;
+  background-color: var(--primary-bg-color);
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+.input-card {
+  width: 100%;
+  padding: 2rem;
+  border-radius: 5px;
+  background-color: var(--card-bg-color);
+  box-shadow: 0px 2px 4px hsla(var(--card-bg-color), 0.12), 0px 3px 6px hsla(var(--card-bg-color), 0.15);
+}
+
+.msb-container {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  padding: 12px;
+  padding-left: 3px;
+  border-radius: 25px;
+  width: inherit;
+  color: var(--secondary-font-color);
+  background-color: var(--primary-bg-color);
+}
+
+.msb-container > div {
+  position: relative;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  height: inherit;
+  margin-top: -12px;
+  cursor: pointer;
+  animation: appear-from-left .25s ease-in-out forwards;
+}
+
+.msb-container > :not(div:only-child) {
+  margin-left: 9px;
+}
+
+.msb-container > div > div {
+  --input-label-margin: 4px;
+  --input-font-size: 14px;
+}
+
+.msb-container > div > span {
+  display: block;
+  height: 24px;
+  width: 24px;
+  margin-right: .5rem;
+  border-radius: 50%;
+  background-color: var(--card-bg-color);
+}
+
+.msb-container > div:only-child > span {
+  height: 42px;
+  width: 42px;
+}
+
+.msb-container > div > div > input {
+  height: 24px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.msb-container> div > div > input:focus {
+  transform: translateY(5px);
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid black;
+}
+
+.msb-container > div > div::before {
+    content: attr(data-label-content);
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    font-size: var(--input-font-size);
+    margin-top: var(--input-label-margin);
+    transition: margin-top .15s ease-in-out, font-size .15s ease-in-out;
+}
+
+@keyframes appear-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+    clip-path: polygon(0 0, 0% 0%, 0% 100%, 0% 100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
